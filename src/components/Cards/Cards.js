@@ -6,7 +6,7 @@ import { Col } from "react-bootstrap";
 function Cards(props) {
   const { book } = props;
   return (
-    <Col xs={6} md={3} key={props.index}>
+    <Col key={props.index}>
       <Card>
         <Card.Img
           variant="top"

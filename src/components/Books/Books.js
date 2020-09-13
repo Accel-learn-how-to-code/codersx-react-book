@@ -34,14 +34,9 @@ class Books extends Component {
     const { books } = this.state;
     return (
       <div>
-        <NavbarMain navba="home"/>
+        <NavbarMain />
         <Container>
           <Row className="mt-3">
-            <CardGroup>
-              {books.map((x, index) => (
-                <Cards key={index} book={x} />
-              ))}
-            </CardGroup>
             <CardGroup>
               {books.map((x, index) => (
                 <Cards key={index} book={x} />

@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container } from "react-bootstrap";
-import { CardGroup } from "react-bootstrap";
-import { Row } from "react-bootstrap";
+import { Container, Pagination, CardGroup, Row } from "react-bootstrap";
 import Cards from "../Cards/Cards";
-import NavbarMain from '../NavbarMain/NavbarMain';
+import NavbarMain from "../NavbarMain/NavbarMain";
+//import ReactPaginate from "react-paginate";
 
 class Producs extends Component {
   state = {
     books: [],
-    isOpen: false,
+    curentPage: 2,
+    itemPerPage: 4,
   };
+
+  changePage(newPage) {
+    this.setState({
+      curentPage: newPage
+    });
+  }
 
   componentDidMount() {
     axios
@@ -19,30 +25,46 @@ class Producs extends Component {
       )
       .then((res) => {
         const books = res.data;
-        this.setState({ books });
+        this.setState({
+          books,
+        });
       })
       .catch((error) => console.log(error));
   }
 
-  setIsOpen() {
-    this.setState({
-      isOpen: true,
-    });
-  }
-
   render() {
-    const { books } = this.state;
+    const { books, curentPage, itemPerPage } = this.state;
+    const countPage = Math.ceil(books.length / itemPerPage);
+    let begin = (curentPage - 1) * itemPerPage;
+    let end = curentPage * itemPerPage;
+    const showBooks = books.slice(begin, end);
+
+    //count page
+    let items = [];
+    for (let number = 1; number <= countPage; number++) {
+      items.push(
+        <Pagination.Item
+          key={number}
+          active={number === curentPage}
+          onClick={() => this.changePage(number)}
+        >
+          {number}
+        </Pagination.Item>
+      );
+    }
+
     return (
       <div>
         <NavbarMain />
         <Container>
           <Row className="mt-3">
             <CardGroup>
-              {books.map((x, index) => (
+              {showBooks.map((x, index) => (
                 <Cards key={index} book={x} />
               ))}
             </CardGroup>
           </Row>
+          <Pagination>{items}</Pagination>
         </Container>
       </div>
     );
