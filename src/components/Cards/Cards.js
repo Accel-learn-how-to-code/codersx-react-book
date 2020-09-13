@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 import { Col } from "react-bootstrap";

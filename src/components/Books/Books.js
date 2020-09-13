@@ -6,7 +6,7 @@ import { Row } from "react-bootstrap";
 import Cards from "../Cards/Cards";
 import NavbarMain from '../NavbarMain/NavbarMain';
 
-class Producs extends Component {
+class Books extends Component {
   state = {
     books: [],
     isOpen: false,
@@ -34,9 +34,14 @@ class Producs extends Component {
     const { books } = this.state;
     return (
       <div>
-        <NavbarMain />
+        <NavbarMain navba="home"/>
         <Container>
           <Row className="mt-3">
+            <CardGroup>
+              {books.map((x, index) => (
+                <Cards key={index} book={x} />
+              ))}
+            </CardGroup>
             <CardGroup>
               {books.map((x, index) => (
                 <Cards key={index} book={x} />
@@ -49,4 +54,4 @@ class Producs extends Component {
   }
 }
 
-export default Producs;
+export default Books;
