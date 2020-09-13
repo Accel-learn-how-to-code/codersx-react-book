@@ -2,24 +2,22 @@ import React, { Component } from "react";
 import logo from "../../logo.svg";
 import { Navbar } from "react-bootstrap";
 
-class NarbarMain extends Component {
+function NarbarMain() {
 
-  render() {
-    return (
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
-          <img
-            alt=""
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{" "}
+  return (
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand href="#home">
+        <img
+          alt=""
+          src={logo}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+        />{" "}
           React Bootstrap
         </Navbar.Brand>
-      </Navbar>
-    );
-  }
+    </Navbar>
+  );
 }
 
 export default NarbarMain;
